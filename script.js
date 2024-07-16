@@ -1,44 +1,45 @@
 const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '00b673c250mshfd9fca5020a8f1dp156543jsnd335fed67776',
-		'X-RapidAPI-Host': 'weather-by-api-ninjas.p.rapidapi.com'
-	}
+  method: "GET",
+  headers: {
+    "X-RapidAPI-Key": "6aac2f7b0a254ac491c100351241607",
+    "X-RapidAPI-Host": "weatherapi.com",
+  },
 };
 const getWeather = (city) => {
-	cityName.innerHTML = city
+  cityName.innerHTML = city;
 
-	fetch('https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=' + city, options)
-		.then(response => response.json())
-		.then((response) => {
+  fetch(
+    "http://api.weatherapi.com/v1/current.json?key=6aac2f7b0a254ac491c100351241607&q=" +
+      city,
+    options
+  )
+    .then((response) => response.json())
+    .then((response) => {
+      console.log(response);
 
-			console.log(response)
-
-			cloud_pct.innerHTML = response.cloud_pct
-			temp.innerHTML = response.temp
-			temp2.innerHTML = response.temp
-			feels_like.innerHTML = response.feels_like
-			humidity.innerHTML = response.humidity
-			humidity2.innerHTML = response.humidity
-			min_temp.innerHTML = response.min_temp
-			max_temp.innerHTML = response.max_temp
-			wind_speed.innerHTML = response.wind_speed
-			wind_speed2.innerHTML = response.wind_speed
-			wind_degrees.innerHTML = response.wind_degrees
-			sunrise.innerHTML = response.sunrise
-			sunset.innerHTML = response.sunset
-
-		})
-		.catch(err => console.error(err));
-}
+      cloud_pct.innerHTML = response.current.cloud;
+      temp.innerHTML = response.current.temp_f;
+      temp2.innerHTML = response.current.temp_c;
+      feels_like.innerHTML = response.current.feelslike_c;
+      humidity.innerHTML = response.current.humidity;
+      humidity2.innerHTML = response.current.humidity;
+      min_temp.innerHTML = response.current.condition.text;
+      max_temp.innerHTML = response.current.wind_dir;
+      wind_speed.innerHTML = response.current.wind_mph;
+      wind_speed2.innerHTML = response.current.wind_kph;
+      wind_degrees.innerHTML = response.current.wind_degree;
+      sunrise.innerHTML = response.current.last_updated;
+    })
+    .catch((err) => console.error(err));
+};
 const btn = document.querySelector(".search");
 // btn.addEventListener('click',(e) =>{
 // 	e.preventDefault();
 // 	getWeather(city.value);
 // })
 console.log(btn);
-    btn.addEventListener("click", (e) => {
-			e.preventDefault();
-			getWeather(city.value);
-})
-getWeather("Delhi")
+btn.addEventListener("click", (e) => {
+  e.preventDefault();
+  getWeather(city.value);
+});
+getWeather("Delhi");
