@@ -9,7 +9,7 @@ const getWeather = (city) => {
   cityName.innerHTML = city;
 
   fetch(
-    "http://api.weatherapi.com/v1/current.json?key=6aac2f7b0a254ac491c100351241607&q=" +
+    "https://api.weatherapi.com/v1/current.json?key=6aac2f7b0a254ac491c100351241607&q=" +
       city,
     options
   )
